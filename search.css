@@ -1,0 +1,94 @@
+html, body{
+	height:100%;
+}
+.container{
+	background-image:url("search_bg.jpg");
+	height:100%;
+	width:100%;
+	background-position:center;
+	background-size: cover;
+}
+.row{
+	margin-top:10px;
+}
+#map{
+    height:100%;
+}
+#details {
+  transition: all linear 0.5s;
+  background-color: inherit;
+  height: 100px;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.ng-hide {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  top:-200px;
+  left: 200px;
+}
+.table-responsive{
+	max-height:100%;
+	position:relative;
+}
+.table{
+	background-color: lightgray;
+	opacity: 0.7;
+}
+td.showExpandCollapse {
+	display:inline-table;
+	width:100%;
+	height:100%;
+	text-align:center;
+}
+td.showExpandCollapse > button{
+	font-size: 130%;
+	background: inherit;
+	border:none;
+}
+td.showExpandCollapse > button:hover{
+	background-color: inherit;
+	border-color: none;
+}
+td.showExpandCollapse > button:focus,
+td.showExpandCollapse > button:active {
+   outline: none !important;
+   background-color: inherit;
+}
+.hideExpandCollapse{
+	display:none;
+}
+div.showExpandCollapse{
+	display: none;
+	position:absolute;
+	width:95%;
+}
+.left{
+	float:left;
+}
+.left img{
+	margin:10px;
+}
+.right{
+	float:right;
+	margin:10px;
+	width:20%;
+}
+.center{
+	width:80%;
+}
+.ratings{
+	width:100%;
+	float:left;
+}
+.star1,.star2,.star3,.star4,.star5{
+	color:yellow !important;
+}
+.ratingicon{
+	color:gray;
+	cursor:not-allowed;
+}

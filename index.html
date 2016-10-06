@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="search.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBLbx-IY0PmIrml-DhttkU053qlrvDBFk&libraries=places"></script>
+	<script src="search.js">
+	</script>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Search Project</title>
+	</head>
+	<body ng-app="search" ng-controller="SearchController">
+		<div  class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h4 style="opacity:0.6">Enter a city name to explore places around it</h4>
+					<form>
+						<div class="form-group">
+							<input type="text" class="form-control" id="queryText" placeholder="Eg:San Francisco" ng-model="searchString">
+						</div>
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<buttton type="submit" class="btn btn-primary" ng-click="getResults()">Explore Near By Places!</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row" style="height:75%">
+				<div class="col-md-6" style="height:100%">
+					<div class="text-muted" ng-bind="error_msg"></div>
+					<div class = "table-responsive">
+						<table class="table table-hover">
+							<tr ng-repeat="x in places">
+								<td><img ng-src="{{x.image}}" width="20px" height="20px"></td>
+								<td>{{x.name}}</td>
+								<td><span class="label {{x.labelClass}}">{{x.isOpen}}</span></td>
+								<td class="{{x.expandCollapse}}">
+									<button type="button" id="expand{{$index}}" class="btn btn-default" ng-click="changeIcon($index + 1,$event)" aria-label="Collapse down">
+  										<span ng-show="isExpand{{ $index + 1 }}" class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+  										<span ng-hide="isExpand{{ $index + 1 }}" class="glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
+									</button>
+								</td>
+							</tr>
+						</table>
+						<div  ng-repeat = "x in places">
+							<div class="{{x.expandCollapse}} ng-hide" id="contentDiv{{$index+1}}">
+								<div class="left">
+									<img ng-src="{{x.place_details.image_url}}"></img>
+								</div>
+								<div class="right">
+									<span class="ratings">
+										<p>
+											<span ng-class="{star1:x.place_details.star1}" class="ratingicon glyphicon glyphicon-star"></span>
+											<span ng-class="{star2:x.place_details.star2}" class="ratingicon glyphicon glyphicon-star"></span>
+											<span ng-class="{star3:x.place_details.star3}" class="ratingicon glyphicon glyphicon-star"></span>
+											<span ng-class="{star4:x.place_details.star4}" class="ratingicon glyphicon glyphicon-star"></span>
+											<span ng-class="{star5:x.place_details.star5}" class="ratingicon glyphicon glyphicon-star"></span>
+										</p>
+										<p>{{x.place_details.ratings}}</p>
+										&nbsp
+									</span>
+								</div>
+								<div class="center">
+									<p>{{x.place_details.address}}</p>
+									<p>{{x.place_details.phone}}</p>
+									<a target="_blank" href="{{x.place_details.website}}">Visit Website...</a>
+								</div>
+								
+							</div>
+						</div>
+    				</div>
+				</div>
+				<div class="col-md-6" style="height:100%">
+					<div id="map">
+    				</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top:0px;">
+				<div class="col-md-12" style="text-align:center;">
+					<img src="google_logo.png">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
